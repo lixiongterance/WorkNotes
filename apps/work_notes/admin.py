@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from work_notes.models import Note, Dir
+
+admin.site.register(Note)
+admin.site.register(Dir)
