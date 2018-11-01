@@ -6,7 +6,7 @@ urlpatterns = [
     # homepage
     url(r'^$', views.index, name='index'),
     # list dirs and notes
-    #url(r'^notes/dir1/dir2/note1$', views.notes, name='notes'),
+    url(r'^notes/(?P<dir_id>\d+)?$', views.notes, name='notes'),
     ## add dir
     #url(r'^new_dir/$', views.new_dir, name='new_dir'),
     ## add note

@@ -1,0 +1,15 @@
+{% extends 'main_base.html' %}
+
+{% block content %}
+
+	<p>Notes</p>
+
+	<ul>
+		{% for item in items %}
+		<li>{{ item  }}</li>
+		{% empty %}
+			<li>No notes have been added yet.</li>
+		{% endfor %}
+	</ul>
+
+{% endblock content %}
