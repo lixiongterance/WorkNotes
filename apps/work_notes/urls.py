@@ -1,4 +1,6 @@
-from django.conf.urls import url
+"""work_notes"""
+
+from django.conf.urls import url, include
 
 from . import views
 
@@ -6,7 +8,10 @@ urlpatterns = [
     # homepage
     url(r'^$', views.index, name='index'),
     # list dirs and notes
-    url(r'^notes/(?P<dir_id>\d+)?$', views.notes, name='notes'),
+    url(r'^items/', include([
+        url(r'^dir/(?P<dir_id>\d+)?$', views.dirs, name='dirs'),
+        url(r'note/(?P<note_id>\d+)', views.note, name='note'),
+    ], namespace='items')),
     ## add dir
     #url(r'^new_dir/$', views.new_dir, name='new_dir'),
     ## add note
