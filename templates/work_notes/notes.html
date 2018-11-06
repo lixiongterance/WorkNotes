@@ -2,6 +2,10 @@
 
 {% block content %}
 
+	<button onclick="window.location.href='{% url 'work_notes:new_dir' %}'">
+		Add a new dir
+	</button>
+
 	<p>Notes</p>
 
 	<ul>
@@ -10,7 +14,7 @@
 		{% else %}
 			{% for dir in dirs %}
 				<li>
-					<a href="{% url 'work_notes:items:dirs' dir.id %}">{{ dir }}</a>
+					<a href="{% url 'work_notes:items:dir' dir.id %}">{{ dir }}</a>
 				</li>
 			{% endfor %}
 

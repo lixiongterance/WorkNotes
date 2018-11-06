@@ -9,7 +9,7 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     # list dirs and notes
     url(r'^items/', include([
-        url(r'^dir/(?:(?P<dir_id>\d+)/)?$', views.dirs, name='dirs'),
+        url(r'^dir/(?:(?P<dir_id>\d+)/)?$', views.dir, name='dir'),
         url(r'note/(?P<note_id>\d+)/', views.note, name='note'),
     ], namespace='items')),
     # add dir

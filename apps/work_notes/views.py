@@ -11,7 +11,7 @@ def index(request):
     """Home page"""
     return render(request, 'index.html')
 
-def dirs(request, dir_id=None):
+def dir(request, dir_id=None):
     """list all dirs and files in root"""
     dirs = Dir.objects.filter(parent_dir=dir_id).order_by('date_added')
     notes = Note.objects.filter(parent_dir=dir_id).order_by('date_added')
@@ -32,11 +32,12 @@ def new_dir(request):
     if request.method != 'POST':
         # go to new_dir page
         item_form = DirForm()
-        context = {'item_form': item_form}
-        return render(request, 'work_notes/new_item.html', context)
     else:
         # create a dir
         item_form = DirForm(request.POST)
         if item_form.is_valid():
             item_form.save()
             return HttpResponseRedirect(reverse('work_notes:items:dir'))
+
+    context = {'item_form': item_form}
+    return render(request, 'work_notes/new_item.html', context)
