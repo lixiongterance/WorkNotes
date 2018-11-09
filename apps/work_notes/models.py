@@ -2,11 +2,11 @@ from django.db import models
 
 class Note(models.Model):
     """note"""
-    parent_dir = models.ForeignKey('Dir', on_delete=models.CASCADE, null=True,
-                                   blank=True, default=None)
     title = models.CharField(max_length=200)
     text = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
+    parent_dir = models.ForeignKey('Dir', on_delete=models.CASCADE, null=True,
+                                   blank=True, default=None)
 
     class Meta:
         verbose_name_plural = 'Notes'

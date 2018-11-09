@@ -14,10 +14,12 @@ urlpatterns = [
     ], namespace='items')),
     # add dir
     url(r'^new_dir/$', views.new_dir, name='new_dir'),
-    ## add note
-    #url(r'^new_note/dir1/$', views.new_note, name='new_note'),
-    ## modify item
-    #url(r'^edit/id/$', views.edit, name='edit'),
+    # add note
+    url(r'^new_note/(?:(?P<dir_id>\d+)/)?$', views.new_note, name='new_note'),
+    # edit note
+    url(r'^edit_note/(?P<note_id>\d+)/$', views.edit_note, name='edit_note'),
+    # edit dir
+    #url(r'^edit_dir/(?P<dir_id>\d+)/&', views.edit_dir, name='edit_dir')
     ## delete item
     #url(r'^delete/id/$', views.delete, name='delete'),
 ]

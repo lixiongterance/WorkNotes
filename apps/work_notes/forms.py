@@ -11,3 +11,10 @@ class DirForm(forms.ModelForm):
         '''
         fields = ['name', 'desc', 'parent_dir']
         labels = {'name': 'dir name', 'desc': 'dir desc', 'parent_dir': 'parent dir'}
+
+class NoteForm(forms.ModelForm):
+    class Meta:
+        model = Note
+        fields = ['title', 'text']
+        labels = {'title': 'title', 'text': 'text'}
+        widgets = {'text': forms.Textarea(attrs={'cols': 80})}

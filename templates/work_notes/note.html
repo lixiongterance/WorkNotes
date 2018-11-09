@@ -2,6 +2,10 @@
 
 {% block content %}
 
+	<a href="{% url 'work_notes:edit_note' note.id %}">
+		<button>edit</button>
+	</a>
+
 	<p>
 		<small><em>time added: {{ note.date_added|date:'M d, Y, H:m' }}</em></small>
 	</p>

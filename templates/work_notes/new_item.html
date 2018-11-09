@@ -3,11 +3,10 @@
 {% block content %}
 
 	<p>Add a new dir:</p>
-
 	<form action="{% url 'work_notes:new_dir' %}" method="POST">
 		{% csrf_token %}
 		{{ item_form.as_p }}
-		<button name="submit">add</button>
+		<button type="submit">add</button>
 	</form>
 
 {% endblock content %}

@@ -1,0 +1,14 @@
+{% extends 'main_base.html' %}
+
+{% block content %}
+
+<a href="{% url 'work_notes:items:dir' cur_dir_id %}"><button>return</button></a>
+
+	<p>Add a new note:</p>
+	<form action="{% url 'work_notes:new_note' cur_dir_id %}" method="POST">
+		{% csrf_token %}
+		{{ item_form.as_p }}
+		<button type="submit">add</button>
+	</form>
+
+{% endblock content %}
