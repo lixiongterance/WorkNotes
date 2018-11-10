@@ -1,6 +1,12 @@
 <p>
-	<a href="{% url 'work_notes:index' %}">Work Notes</a>
-	<a href="{% url 'work_notes:items:dir' %}">Notes</a>
+	<a href="{% url 'work_notes:index' %}">Work Notes</a> - 
+	<a href="{% url 'work_notes:items:dir' %}">Notes</a> - 
+  {% if user.is_authenticated %}
+    Hello, {{ user.username }}
+    <a href="{% url 'users:logout' %}">log out</a>
+  {% else %}
+    <a href="{% url 'users:login' %}">log in</a>
+  {% endif %}
 </p>
 
 {% block content %}{% endblock content %}
