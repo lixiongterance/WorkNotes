@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 from .models import Dir, Note
 from .forms import DirForm, NoteForm
@@ -11,6 +12,7 @@ def index(request):
     """Home page"""
     return render(request, 'index.html')
 
+@login_required
 def dir(request, dir_id=None):
     """list all dirs and files in root"""
     if dir_id == None or dir_id == '0':
@@ -25,6 +27,7 @@ def dir(request, dir_id=None):
     context = {'dirs': dirs, 'notes': notes, 'cur_dir_id': dir_id}
     return render(request, 'work_notes/dir.html', context)
 
+@login_required
 def note(request, note_id=None):
     """show single note's content"""
     note = Note.objects.get(id=note_id)
@@ -33,6 +36,7 @@ def note(request, note_id=None):
     return render(request, 'work_notes/note.html', context)
 
 # 后面将dir和note合并
+@login_required
 def new_dir(request):
     """add a new dir"""
     if request.method != 'POST':
@@ -48,6 +52,7 @@ def new_dir(request):
     context = {'item_form': item_form}
     return render(request, 'work_notes/new_item.html', context)
 
+@login_required
 def new_note(request, dir_id=None):
     """add a new note"""
     if dir_id != None and dir_id != '0':
@@ -70,6 +75,7 @@ def new_note(request, dir_id=None):
     context = {'item_form': item_form, 'cur_dir_id': dir_id}
     return render(request, 'work_notes/new_note.html', context)
 
+@login_required
 def edit_note(request, note_id):
     """edit a note"""
     note = Note.objects.get(id=note_id)

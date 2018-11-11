@@ -126,6 +126,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-# user log in and log out redirect pages
+# user log in and log out settings
+LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'work_notes:index'
 LOGOUT_REDIRECT_URL = 'work_notes:index'
