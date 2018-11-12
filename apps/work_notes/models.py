@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Note(models.Model):
     """note"""
@@ -7,6 +8,7 @@ class Note(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
     parent_dir = models.ForeignKey('Dir', on_delete=models.CASCADE, null=True,
                                    blank=True, default=None)
+    user = models.ForeignKey(User)
 
     class Meta:
         verbose_name_plural = 'Notes'
@@ -21,6 +23,7 @@ class Dir(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
     parent_dir = models.ForeignKey('self', on_delete=models.CASCADE, null=True,
                                    blank=True, default=None)
+    user = models.ForeignKey(User)
 
     class Meta:
         unique_together=('parent_dir', 'name')

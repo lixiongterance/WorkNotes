@@ -21,8 +21,10 @@ def dir(request, dir_id=None):
     else:
         real_dir = dir_id
 
-    dirs = Dir.objects.filter(parent_dir=real_dir).order_by('date_added')
-    notes = Note.objects.filter(parent_dir=real_dir).order_by('date_added')
+    dirs = Dir.objects.filter(parent_dir=real_dir,
+                              user=request.user).order_by('date_added')
+    notes = Note.objects.filter(parent_dir=real_dir,
+                               user=request.user).order_by('date_added')
     
     context = {'dirs': dirs, 'notes': notes, 'cur_dir_id': dir_id}
     return render(request, 'work_notes/dir.html', context)
@@ -31,6 +33,9 @@ def dir(request, dir_id=None):
 def note(request, note_id=None):
     """show single note's content"""
     note = Note.objects.get(id=note_id)
+
+    if note.user != request.user:
+        raise Http404
 
     context = {'note': note}
     return render(request, 'work_notes/note.html', context)
@@ -46,7 +51,9 @@ def new_dir(request):
         # create a dir
         item_form = DirForm(request.POST)
         if item_form.is_valid():
-            item_form.save()
+            item = item_form.save(commit=False)
+            item.user = request.user
+            item.save()
             return HttpResponseRedirect(reverse('work_notes:items:dir'))
 
     context = {'item_form': item_form}
@@ -68,6 +75,7 @@ def new_note(request, dir_id=None):
         if item_form.is_valid():
             new_item = item_form.save(commit=False)
             new_item.parent_dir = cur_dir
+            new_item.user = request.user
             new_item.save()
             return HttpResponseRedirect(reverse('work_notes:items:dir', 
                                                 args=[dir_id]))
@@ -79,6 +87,9 @@ def new_note(request, dir_id=None):
 def edit_note(request, note_id):
     """edit a note"""
     note = Note.objects.get(id=note_id)
+
+    if note.user != request.user:
+        raise Http404
 
     if request.method != 'POST':
         note_form = NoteForm(instance=note)
