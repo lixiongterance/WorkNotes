@@ -1,16 +1,20 @@
 {% extends 'main_base.html' %}
 
 {% block header %}
+
   <div class="jumbotron">
 	<h1>Work Note</h1>
 	<p>A place to note and find notes.</p>
 	<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
   </div>
+
 {% endblock header %}
 
 {% block content %}
+
   <h2><a href="{% url 'users:register' %}">Register an account</a> to make your own Work Note, and list the notes.</h2>
   <h2>
 	todo: list all notes by search times or date.
   </h2>
+  
 {% endblock content %}
