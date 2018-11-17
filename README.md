@@ -27,7 +27,7 @@ A platform for worker to take notes
 - 扩展及优化
 
   1. 数据库更换（使用mysql）
-  2. 前后端分离
+  2. 前后端分离（包括bootstrap）
   3. makdown支持、文件编辑器支持
 
 ### Django其他功能

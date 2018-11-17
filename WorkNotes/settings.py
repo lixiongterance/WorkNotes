@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # third party apps
+    'bootstrap3',
+
     # work notes
     'work_notes',
     # users
@@ -130,3 +133,9 @@ STATIC_URL = '/static/'
 LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'work_notes:index'
 LOGOUT_REDIRECT_URL = 'work_notes:index'
+
+# Third party apps' settings
+# bootstrap
+BOOTSTRAP3 = {
+    'include_jquery': True
+}
