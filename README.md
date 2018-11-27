@@ -6,7 +6,14 @@ A platform for worker to take notes
 
 ## Functions and plan
 
-### Functions
+### Recently
+
+1. 完成笔记增删修查所有功能，对应修改页面
+2. git创建分支修改为class view
+
+### Long time plan
+
+#### Functions
 
 1. 笔记：添加，删除，修改，查询
 2. 账号：用户空间，用户profile
@@ -15,7 +22,7 @@ A platform for worker to take notes
 5. 分页：结果分页（查询、搜索结果）
 6. 扩展：markdown支持（_置后_）
 
-### Plan
+#### Plan
 
 - 基本功能
 
@@ -30,6 +37,6 @@ A platform for worker to take notes
   2. 前后端分离（包括bootstrap）
   3. makdown支持、文件编辑器支持
 
-### Django其他功能
+#### Django其他功能
 
 未完待续...
